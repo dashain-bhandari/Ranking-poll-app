@@ -11,6 +11,7 @@ import Main from './pages/Main'
 import Voting from './pages/Votings';
 import toast, { Toaster } from 'react-hot-toast';
 import Homes from './pages/homes'
+
 function App() {
 
 
@@ -24,7 +25,7 @@ function App() {
     <Route path='/home' element={<Homes/>}>
     <Route path='nominations' element={<Nomination/>}></Route>
     <Route path='main' element={<Main/>}></Route>
-    <Route index element={<User/>}></Route>
+    <Route index element={<Nomination/>}></Route>
     <Route path='users' element={<User/>}></Route>
     <Route path='voting' element={<Voting/>}></Route>
     </Route>

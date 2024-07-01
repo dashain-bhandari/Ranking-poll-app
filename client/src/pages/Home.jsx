@@ -20,6 +20,7 @@ const Home=()=>{
                 console.log(data)
                 setUser(data)
             } catch (error) {
+       
                console.log(error.message) 
             }
         }
@@ -67,6 +68,7 @@ const Home=()=>{
                     {user ? (
                     <div className='text-gray-700'><Link className='text-violet-700' to='/home'>Rejoin</Link>  Or create a poll? <Link to='/' className='text-violet-700'>Create poll</Link></div>
                     ):(<>
+                    <div className='text-gray-700'> Or create a poll? <Link to='/' className='text-violet-700'>Create poll</Link></div>
                     </>)}
                        
                 </div>

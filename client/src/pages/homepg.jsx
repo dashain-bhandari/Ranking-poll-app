@@ -12,7 +12,6 @@ import { socket } from '../context/socketContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 const HomePg = () => {
-
     const navigate = useNavigate()
     const { watch, register, handleSubmit } = useForm()
     const allInputField = watch();
@@ -68,7 +67,7 @@ const HomePg = () => {
             }
         }
         getPollInfo();
-    }, []);
+    }, [active]);
 
     socket.on('active', (arr) => {
         console.log(arr)
@@ -92,22 +91,22 @@ const HomePg = () => {
         </svg></button>
         <div className=' h-full w-full py-4 px-8 flex flex-col gap-8'>
             <div className=' bg-gray-100 w-full flex flex-col  p-4 rounded' >
-            <div className='text-violet-600'>{user?.name}</div>
+                <div className='text-violet-600'>{user?.name}</div>
                 <div className='flex flex-row gap-2 justify-between items-center'>
 
-<div >
+                    <div >
 
                         <span className='text-gray-700'>Poll Id: </span>{"  " + user?.pollId}
 
                     </div>
-                <CopyToClipboard onCopy={onCopy} text={poll?.pollId}>
-                    <div className='bg-violet-500 hover:bg-violet-600 rounded p-2 text-white cursor-pointer'>
-                        {"Click to Copy"}
-                    </div>
-                </CopyToClipboard>
-                   
+                    <CopyToClipboard onCopy={onCopy} text={poll?.pollId}>
+                        <div className='bg-violet-500 hover:bg-violet-600 rounded p-2 text-white cursor-pointer'>
+                            {"Click to Copy"}
+                        </div>
+                    </CopyToClipboard>
+
                 </div>
-                 
+
 
             </div>
             {poll && (<div className='flex flex-col justify-center h-full    items-center bg-gray-100  '>

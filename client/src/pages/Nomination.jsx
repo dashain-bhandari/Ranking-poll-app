@@ -77,7 +77,7 @@ setNomination({
               <div data-tooltip-id="my-tooltip" data-tooltip-content={item?.name} className=' p-4 rounded cursor-pointer w-full' key={idx}>{item?.nomination}</div>
 
               {
-                poll && (item.user == user.userId || poll.admin == user.userId) && !poll.votingStarted && !poll.votingEnded && 
+                poll && (item.user == user?.userId || poll?.admin == user?.userId) && !poll.votingStarted && !poll.votingEnded && 
                 (<>
                   <div className={`cursor-pointer`} onClick={() => onDelete(item.nominationId)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 512 512">

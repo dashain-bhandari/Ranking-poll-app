@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./sidebar";
 import toast from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
@@ -9,11 +9,11 @@ import 'reactjs-popup/dist/index.css';
 import { socket } from '../context/socketContext'
 import axios from 'axios'
 
-const Homes=()=>{
+const Homes = () => {
     const { poll, setPoll, user, active, setActive, setUser } = useContext(authContext)
     const [copied, setCopied] = useState()
     console.log(poll)
-
+    const navigate = useNavigate()
     useEffect(() => {
         const getPollInfo = async () => {
             try {
@@ -76,9 +76,9 @@ const Homes=()=>{
             }
         }
         getPollInfo();
-    }, []);
+    }, [active]);
 
- 
+
 
     socket.on('active', (arr) => {
         console.log(arr)
@@ -92,17 +92,26 @@ const Homes=()=>{
 
     const location = useLocation();
     console.log(location.pathname);
+   
+    socket.on('started', (poll) => {
+        console.log("started");
+        if (poll) {
+            console.log(poll)
+            setPoll(poll);
+        }
+        navigate('/home/voting');
+    })
 
-return (<>
-<div className="flex flex-row w-full h-screen bg-[#FAFAFF] ">
-    <Sidebar/>
-    <div className="bg-gray-100 w-full h-full 
+    return (<>
+        <div className="flex flex-row w-full h-screen bg-[#FAFAFF] ">
+            <Sidebar />
+            <div className="bg-gray-100 w-full h-full 
      px-4 overflow-y-auto">
-    <Outlet/>
-    </div>
+                <Outlet />
+            </div>
 
-</div>
-</>)
+        </div>
+    </>)
 }
 
 export default Homes;
